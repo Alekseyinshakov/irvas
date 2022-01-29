@@ -374,6 +374,7 @@ textarea:focus {
   display: block;
   margin: 0 auto;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .glazing_block a {
@@ -487,7 +488,7 @@ textarea:focus {
   display: none;
 }
 
-.glazing a.active {
+.glazing .active a {
   text-decoration: none;
   color: #454545;
 }

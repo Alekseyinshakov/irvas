@@ -52,7 +52,7 @@ const modals = () => {
 
   modal('.popup_engineer_btn', '.popup_engineer');
   modal('.phone_link', '.popup');
-  showModalByTime('.popup', 500000)
+  // showModalByTime('.popup', 60000)
 }
 
 export default modals;
