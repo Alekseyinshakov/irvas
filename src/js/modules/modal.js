@@ -1,15 +1,17 @@
 const modals = () => {
   let wasShow = false;
 
-  function modal(trigger, mod) {
+  function modal(trigger, mod, modClose, closeClickOverlay = true) {
     const triggerBtn = document.querySelectorAll(trigger);
     const modalWindow = document.querySelector(mod);
-    const closeBtns = document.querySelectorAll('.popup_close')
+    const closeBtns = document.querySelectorAll(modClose)
+    const allModals = document.querySelectorAll('[data-modal]')
 
 
     triggerBtn.forEach(elem => {
       elem.addEventListener('click', (e) => {
         e.preventDefault()
+        allModals.forEach(item => item.style.display = 'none')
         openModal()
       })
     })
@@ -17,14 +19,16 @@ const modals = () => {
 
 
     modalWindow.addEventListener('click', (e) => {
-      if (e.target === modalWindow) {
+      if (e.target === modalWindow && closeClickOverlay) {
         closeModal();
+        allModals.forEach(item => item.style.display = 'none')
       }
     })
 
     closeBtns.forEach(elem => {
       elem.addEventListener('click', () => {
         closeModal()
+        allModals.forEach(item => item.style.display = 'none')
       })
     })
 
@@ -50,9 +54,12 @@ const modals = () => {
     }, time);
   }
 
-  modal('.popup_engineer_btn', '.popup_engineer');
-  modal('.phone_link', '.popup');
-  // showModalByTime('.popup', 60000)
+  modal('.popup_engineer_btn', '.popup_engineer', '.popup_close');
+  modal('.phone_link', '.popup', '.popup_close');
+  modal('.popup_calc_btn', '.popup_calc' , '.popup_calc_close', false);
+  modal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false )
+  modal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false )
+  // showModalByTime('.popup', 60000) 
 }
 
 export default modals;
