@@ -1,7 +1,7 @@
 const modals = () => {
   let wasShow = false;
 
-  function modal(trigger, mod, modClose, closeClickOverlay = true) {
+  function modal(trigger, mod, modClose, closeClickOverlay = true,  isImportant = false) {
     const triggerBtn = document.querySelectorAll(trigger);
     const modalWindow = document.querySelector(mod);
     const closeBtns = document.querySelectorAll(modClose)
@@ -33,14 +33,17 @@ const modals = () => {
     })
 
     function openModal() {
+      document.body.style.paddingRight = `${calcScroll()}px`
       modalWindow.style.display = 'block';
       document.body.classList.add('modal-open');
       wasShow = true;
+      
     };
 
     function closeModal() {
       modalWindow.style.display = '';
-      document.body.classList.remove('modal-open')
+      document.body.classList.remove('modal-open');
+      document.body.style.paddingRight = 0;
     };
 
   }
@@ -52,6 +55,19 @@ const modals = () => {
         document.body.classList.add('modal-open');
       }
     }, time);
+  }
+
+  function calcScroll() {
+    let div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50%';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+
+    document.body.appendChild(div);
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
   }
 
   modal('.popup_engineer_btn', '.popup_engineer', '.popup_close');
