@@ -18,6 +18,12 @@ body {
   color: red;
 }
 
+.popup img.adaptive_img{
+  max-width: 90vw;
+  max-height: 90vh;
+  margin-bottom: 0;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -1822,3 +1828,4 @@ textarea:focus {
     animation: none !important;
   }
 }
+
